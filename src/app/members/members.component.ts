@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
 @Component({
-  selector: 'app-menbers',
-  templateUrl: './menbers.component.html',
-  styleUrls: ['./menbers.component.css'],
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.css'],
 })
-export class MenbersComponent implements OnInit {
+export class MembersComponent implements OnInit {
   members!: Member[];
 
   selectedMember!: Member;
