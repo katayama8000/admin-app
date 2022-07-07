@@ -1,26 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
-import { MEMBERS } from '../mock-members';
-
+import { MemberService } from '../member.service';
 @Component({
   selector: 'app-menbers',
   templateUrl: './menbers.component.html',
   styleUrls: ['./menbers.component.css'],
 })
 export class MenbersComponent implements OnInit {
-  members = MEMBERS;
-  member: Member = {
-    id: 1,
-    name: '田中太郎',
-  };
+  members! : Member[];
+
 
   selectedMember!: Member;
 
-  constructor() {}
+  constructor(private memberService:MemberService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMembers();
+  }
 
   onSelect(member: Member): void {
     this.selectedMember = member;
+  }
+
+  getMembers(): void{
+    this.members = this.memberService.getMembers()
   }
 }
