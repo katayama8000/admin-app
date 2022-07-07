@@ -7,12 +7,11 @@ import { MemberService } from '../member.service';
   styleUrls: ['./menbers.component.css'],
 })
 export class MenbersComponent implements OnInit {
-  members! : Member[];
-
+  members!: Member[];
 
   selectedMember!: Member;
 
-  constructor(private memberService:MemberService) {}
+  constructor(private memberService: MemberService) {}
 
   ngOnInit(): void {
     this.getMembers();
@@ -22,7 +21,9 @@ export class MenbersComponent implements OnInit {
     this.selectedMember = member;
   }
 
-  getMembers(): void{
-    this.members = this.memberService.getMembers()
+  getMembers(): void {
+    this.memberService
+      .getMembers()
+      .subscribe((members) => (this.members = members));
   }
 }
