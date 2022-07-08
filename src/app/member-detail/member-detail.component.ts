@@ -15,15 +15,21 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private memberService: MemberService,
-    private location:Location
+    private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.getMember()
-   }
+    this.getMember();
+  }
 
-  getMember(): void{
-    const id = +this.route.snapshot.paramMap.get("id")
-    this.memberService.getMember(id).subscribe(member => this.member = member)
+  getMember(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.memberService
+      .getMember(id)
+      .subscribe((member) => (this.member = member));
+  }
+
+  goback(): void {
+    this.location.back();
   }
 }
