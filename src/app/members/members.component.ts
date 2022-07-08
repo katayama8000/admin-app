@@ -19,10 +19,12 @@ export class MembersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMembers();
+    console.log(this.selectedMember);
   }
 
   onSelect(member: Member): void {
     this.selectedMember = member;
+    console.log(this.selectedMember);
     this.MessageService.add(`MembersComponent:社員データ(id=${member.id})が選択されました`)
   }
 
