@@ -1,5 +1,8 @@
+import { MemberService } from './../member.service';
+import { ActivatedRoute } from '@angular/router';
 import { Member } from './../member';
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-member-detail',
@@ -9,7 +12,18 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MemberDetailComponent implements OnInit {
   @Input() member!: Member;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private memberService: MemberService,
+    private location:Location
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMember()
+   }
+
+  getMember(): void{
+    const id = +this.route.snapshot.paramMap.get("id")
+    this.memberService.getMember(id).subscribe(member => this.member = member)
+  }
 }
