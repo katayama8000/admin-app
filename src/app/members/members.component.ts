@@ -10,23 +10,16 @@ import { MemberService } from '../member.service';
 export class MembersComponent implements OnInit {
   members!: Member[];
 
-  selectedMember!: Member;
 
   constructor(
     private memberService: MemberService,
-    public MessageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.getMembers();
-    console.log(this.selectedMember);
+    console.log(this);
   }
 
-  onSelect(member: Member): void {
-    this.selectedMember = member;
-    console.log(this.selectedMember);
-    this.MessageService.add(`MembersComponent:社員データ(id=${member.id})が選択されました`)
-  }
 
   getMembers(): void {
     this.memberService
