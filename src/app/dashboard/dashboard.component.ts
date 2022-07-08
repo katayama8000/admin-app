@@ -5,19 +5,20 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  members:Member[] =[]
+  members: Member[] = [];
 
-  constructor(private memberService:MemberService) { }
+  constructor(private memberService: MemberService) {}
 
   ngOnInit(): void {
     this.getMembers();
   }
 
-  getMembers(): void{
-    this.memberService.getMembers().subscribe(members=>this.members = members.slice(1,5))
+  getMembers(): void {
+    this.memberService
+      .getMembers()
+      .subscribe((members) => (this.members = members.slice(1, 5)));
   }
-
 }
