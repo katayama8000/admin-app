@@ -33,7 +33,7 @@ export class MemberDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save():void {
+  save(): void {
     this.memberService.updateMember(this.member).subscribe(() => this.goback());
   }
 }

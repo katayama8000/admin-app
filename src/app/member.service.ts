@@ -22,14 +22,13 @@ export class MemberService {
   getMembers(): Observable<Member[]> {
     this.messageService.add('MemberService:社員一覧データを取得しました');
     return this.http.get<Member[]>(this.membersUrl).pipe(
-      tap(members => this.log("社員データを件取得しました")),
+      tap(members => this.log(`社員データを${members.length}件取得しました`)),
       catchError(this.handleError<Member[]>('getMembers', []))
     );
   }
 
   getMember(id:number): Observable<Member> {
     this.messageService.add(`MemberService:社員一覧データ(${id})を取得しました`);
-    //return of(MEMBERS.find(member => member.id === id));
     const url = `${this.membersUrl}/${id}`;
     return this.http.get<Member>(url).pipe(
       tap(_ => this.log(`社員データ(${id})を取得しました`)),

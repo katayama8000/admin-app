@@ -32,6 +32,7 @@ export class MembersComponent implements OnInit {
   }
 
   delete(member: Member): void {
+    //引数以外を抽出
     this.members = this.members.filter((m) => m !== member);
     this.memberService.deleteMember(member).subscribe();
   }
