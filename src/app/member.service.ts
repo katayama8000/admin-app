@@ -3,20 +3,29 @@ import { Member } from './member';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MemberService {
-  constructor(private messageService: MessageService) {}
+  private membersUrl = 'api/members';
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
 
   getMembers(): Observable<Member[]> {
     this.messageService.add('MemberService:社員一覧データを取得しました');
-    return of(MEMBERS);
+    return this.http.get<Member[]>(this.membersUrl);
   }
 
   getMember(id:number): Observable<Member> {
     this.messageService.add(`MemberService:社員一覧データ(${id})を取得しました`);
     return of(MEMBERS.find(member => member.id === id));
+  }
+
+  private log(message: string) {
+    this.messageService.add(`MemberService: ${message}`);
   }
 }
