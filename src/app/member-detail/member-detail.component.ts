@@ -34,6 +34,7 @@ export class MemberDetailComponent implements OnInit {
   }
 
   save(): void {
+    //レスポンスが帰ってきたらひとつ前に戻る
     this.memberService.updateMember(this.member).subscribe(() => this.goback());
   }
 }

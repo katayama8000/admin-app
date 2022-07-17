@@ -20,9 +20,11 @@ export class InMemoryDataService implements InMemoryDataService {
       { id: 20, name: '佐々木 小次郎' },
     ];
 
+    //オブジェクトで返す必要がある
     return {members};
   }
 
+  //新しいIDを返す
   genId(members: Member[]): number {
     return members.length > 0 ? Math.max(...members.map(member => member.id)) + 1 : 11;
   }

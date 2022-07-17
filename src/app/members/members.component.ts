@@ -8,7 +8,7 @@ import { MemberService } from '../member.service';
   styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
-  members!: Member[];
+  members: Member[] = [];
 
   constructor(private memberService: MemberService) {}
 
@@ -28,7 +28,9 @@ export class MembersComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.memberService.addMember({ name } as Member).subscribe((member) => this.members.push(member));
+    this.memberService
+      .addMember({ name } as Member)
+      .subscribe((member) => this.members.push(member));
   }
 
   delete(member: Member): void {
