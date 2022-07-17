@@ -21,7 +21,6 @@ export class MemberService {
 
   //社員データをすべて取得
   getMembers(): Observable<Member[]> {
-    this.messageService.add('MemberService:社員一覧データを取得しました');
     //this.http.get<Member[]>(this.membersUrl)で成功時は動く
     return this.http.get<Member[]>(this.membersUrl).pipe(
       tap((members) => this.log(`社員データを${members.length}件取得しました`)),
