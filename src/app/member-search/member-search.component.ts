@@ -17,23 +17,29 @@ import { MemberService } from '../member.service';
 export class MemberSearchComponent implements OnInit {
 
   members$: Observable<Member[]>;
+
   //observableを継承したクラス
   private searchTerms = new Subject<string>();
 
   constructor(private memberService: MemberService) {}
 
   search(term: string): void {
+    console.log(term)
     this.searchTerms.next(term);
   }
 
   ngOnInit(): void {
     this.members$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
+
+      //短時間で連打されたときにデータが流れるのを防ぐ
       debounceTime(300),
-      // ignore new term if same as previous term
+
+      //データが同じなら流れない
       distinctUntilChanged(),
-      // switch to new search observable each time the term changes
+
+      //受け取ったデータを別のストリームに流す
+      //新しいデータが流れてきたら、今のストリームを破棄する
       switchMap((term: string) => this.memberService.searchMembers(term))
-    );
+    )
   }
 }

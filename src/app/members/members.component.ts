@@ -1,7 +1,7 @@
-import { MessageService } from './../message.service';
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
+import { MessageService } from '../message.service';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
@@ -10,7 +10,11 @@ import { MemberService } from '../member.service';
 export class MembersComponent implements OnInit {
   members: Member[] = [];
 
-  constructor(private memberService: MemberService) {}
+  //初期化関数
+  constructor(
+    protected memberService: MemberService,
+    protected messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.getMembers();
@@ -37,5 +41,16 @@ export class MembersComponent implements OnInit {
     //引数以外を抽出
     this.members = this.members.filter((m) => m !== member);
     this.memberService.deleteMember(member).subscribe();
+  }
+}
+
+//MembersComponentを継承test
+
+class NewComponent extends MembersComponent {
+  constructor(
+    protected memberService: MemberService,
+    protected messageService: MessageService
+  ) {
+    super(memberService, messageService);
   }
 }
