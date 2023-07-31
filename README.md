@@ -1,3 +1,7 @@
+### rust-analyzerを有効化
+    - ~/rustlings で`rustlings lsp` を実行
+    - VS Codeを再起動(reload window)
+
 <div class="oranda-hide">
 
 # rustlings 🦀❤️
